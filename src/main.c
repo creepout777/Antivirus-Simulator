@@ -17,3 +17,4 @@ int main() {
     printf("Setup complete. CLI to be implemented.\\n");
     return 0;
 }
+print itsss
