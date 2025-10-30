@@ -112,5 +112,3 @@ Nous coderons la boucle principale et les commandes :
 
 ---
 
-## 🔗 Design des fonctions
-
