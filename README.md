@@ -1,11 +1,11 @@
 # 🛡️ Toy Antivirus – Notre projet étudiant
 
 ## 👥 Contributeurs
-- YASSINE  Étape 1️⃣ : Structures et prototypes
-- MARWA    Étape 3️⃣ : Gestion des signatures
-- HAMZA    Étape 5️⃣ : Nettoyage
-- ADAM     Étape 2️⃣ : Gestion des fichiers
-- MALAK    Étape 4️⃣ : Scan
+- YASSINE  | Étape 1️⃣ : Structures et prototypes
+- MARWA    | Étape 3️⃣ : Gestion des signatures
+- HAMZA    | Étape 5️⃣ : Nettoyage
+- ADAM     | Étape 2️⃣ : Gestion des fichiers
+- MALAK    | Étape 4️⃣ : Scan
 
 ---
 
