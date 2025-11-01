@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "scan.h"
+#include "../include/scan.h"
 
 /*
 scan_files:

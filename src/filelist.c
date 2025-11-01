@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "filelist.h"
+#include "../include/filelist.h"
 
 // Déclarez les listes globales
 FileRec *Clean = NULL;

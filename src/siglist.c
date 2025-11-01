@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "siglist.h"
+#include "../include/siglist.h"
 
 // Liste globale de signatures
 Sig *Signatures = NULL;
