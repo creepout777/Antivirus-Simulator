@@ -1,4 +1,15 @@
-# 🛡️ Toy Antivirus – Notre projet étudiant
+# 🛡️ Toy-Antivirus, A miniproject assignment
+![License](https://img.shields.io/github/license/creepout777/Antivirus-Simulator)
+![Stars](https://img.shields.io/github/stars/creepout777/Antivirus-Simulator)
+![Forks](https://img.shields.io/github/forks/creepout777/Antivirus-Simulator)
+![Issues](https://img.shields.io/github/issues/creepout777/Antivirus-Simulator)
+![Last Commit](https://img.shields.io/github/last-commit/creepout777/Antivirus-Simulator)
+![Top Language](https://img.shields.io/github/languages/top/creepout777/Antivirus-Simulator)
+![Code Size](https://img.shields.io/github/languages/code-size/creepout777/Antivirus-Simulator)
+![Contributors](https://img.shields.io/github/contributors/creepout777/Antivirus-Simulator)
+
+
+---
 
 ## 👥 Contributeurs
 - YASSINE  | Étape 1️⃣ : Structures et prototypes
@@ -113,4 +124,6 @@ Nous coderons la boucle principale et les commandes :
 🖥️ Nous commencerons par tester les commandes simples (`ADD_SIG`, `LOAD`, `REPORT`) puis nous intégrerons `SCAN` et `QUAR`.
 
 ---
+
+
 
