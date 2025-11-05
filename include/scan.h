@@ -8,4 +8,3 @@
 void scan_files(FileRec **clean, FileRec **suspect, Sig *sigs);
 
 #endif
-
