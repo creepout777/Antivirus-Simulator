@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "cleanup.h"
-#include "filelist.h"
-#include "siglist.h"
+#include "../include/cleanup.h"
+#include "../include/filelist.h"
+#include "../include/siglist.h"
 
 /*
 purge_all:
