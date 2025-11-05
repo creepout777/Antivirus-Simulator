@@ -1,58 +1,79 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include "../include/filelist.h"
+#include "../include/siglist.h"
 #include "../include/scan.h"
 
-// Fonction qui scanne les fichiers de Clean en recherchant les signatures
+/*
+scan_files:
+  - Parcourt la liste Clean
+  - Ouvre chaque fichier sur le disque (curr->name est le chemin)
+  - Lit le contenu dans un buffer
+  - Cherche chaque pattern de signature avec strstr()
+  - Si trouvé → fichier suspect : déplacer vers la liste Suspect
+*/
 void scan_files(FileRec **clean, FileRec **suspect, Sig *sigs) {
-    if (*clean == NULL) {
-        printf("[SCAN] Aucun fichier dans Clean.\n");
-        return;
-    }
-
-    if (sigs == NULL) {
-        printf("[SCAN] Aucune signature chargée.\n");
-        return;
-    }
+    if (!clean || !*clean || !sigs) return;
 
     FileRec *curr = *clean;
     FileRec *prev = NULL;
 
-    while (curr != NULL) {
-        int is_suspicious = 0;
-        Sig *s = sigs;
+    while (curr) {
+        int infected = 0;
 
-        // On parcourt toutes les signatures
-        while (s != NULL) {
-            // strstr → cherche le pattern dans le contenu du fichier
-            if (strstr(curr->data, s->pattern) != NULL) {
-                is_suspicious = 1;
-                break;
-            }
-            s = s->next;
+        // Ouvrir le fichier à partir de son nom (chemin)
+        FILE *fp = fopen(curr->name, "r");
+        if (!fp) {
+            printf("[!] Impossible d’ouvrir %s\n", curr->name);
+            prev = curr;
+            curr = curr->next;
+            continue;
         }
 
-        if (is_suspicious) {
-            printf("[SCAN] %s est suspect → déplacement vers Suspect.\n", curr->name);
+        // Lire le contenu du fichier
+        fseek(fp, 0, SEEK_END);
+        long fsize = ftell(fp);
+        rewind(fp);
 
-            // Retirer de la liste Clean
-            if (prev == NULL) {        // supprimer le premier nœud
-                *clean = curr->next;
-            } else {
-                prev->next = curr->next;
-            }
-
-            // Déplacer vers Suspect
-            curr->suspicious = 1;
-            FileRec *toMove = curr;
+        char *buffer = malloc(fsize + 1);
+        if (!buffer) {
+            fclose(fp);
+            printf("[!] Erreur mémoire sur %s\n", curr->name);
+            prev = curr;
             curr = curr->next;
-            toMove->next = *suspect;
-            *suspect = toMove;
-        } 
-        else {
+            continue;
+        }
+
+        fread(buffer, 1, fsize, fp);
+        buffer[fsize] = '\0';
+        fclose(fp);
+
+        // Comparer avec les signatures
+        for (Sig *s = sigs; s; s = s->next) {
+            if (strstr(buffer, s->pattern)) {
+                infected = 1;
+                break;
+            }
+        }
+
+        free(buffer);
+
+        if (infected) {
+            printf("[!] Suspicious file detected: %s\n", curr->name);
+            curr->suspicious = 1;
+
+            FileRec *found = remove_file(clean, curr->name);
+            insert_file(suspect, found);
+
+            if (prev)
+                curr = prev->next;
+            else
+                curr = *clean;
+        } else {
             prev = curr;
             curr = curr->next;
         }
     }
-
-    printf("[SCAN] Scan terminé ✅\n");
 }
+

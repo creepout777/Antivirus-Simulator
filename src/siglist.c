@@ -7,6 +7,9 @@
  * create_sig: Alloue un nouveau nœud Sig et copie le pattern.
  * Gère l'allocation de la structure et de la chaîne de caractères.
  */
+
+Sig *Signatures = NULL;
+
 Sig* create_sig(const char *pattern) {
     if (!pattern) {
         return NULL;
