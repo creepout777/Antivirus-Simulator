@@ -1,16 +1,33 @@
+# Nom de l'exécutable
+TARGET = toy_antivirus
+
+# Compilateur et options
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -Iinclude
+CFLAGS = -Wall -Wextra -g -std=c99 -Iincludes
 
-SRC = $(wildcard src/*.c)
-OBJ = $(SRC:.c=.o)
+# Fichiers sources
+SRCS = src/main.c src/filelist.c src/siglist.c src/scan.c src/cleanup.c
 
-all: antivirus
+# Fichiers objets
+OBJS = $(SRCS:.c=.o)
 
-antivirus: $(OBJ)
-	$(CC) $(CFLAGS) -o antivirus $(OBJ)
+# Règle par défaut
+all: $(TARGET)
 
-run: antivirus
-	./antivirus
+# Compilation de l'exécutable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
+# Compilation des fichiers objets
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Nettoyage des fichiers objets et de l'exécutable
 clean:
-	rm -f src/*.o antivirus
+	rm -f $(OBJS) $(TARGET)
+
+# Rebuild complet : clean + all
+rebuild: clean all
+
+# Règles spéciales
+.PHONY: all clean rebuild
