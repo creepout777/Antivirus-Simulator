@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "scan.h"
+#include "../include/scan.h"
 
 // Fonction qui scanne les fichiers de Clean en recherchant les signatures
 void scan_files(FileRec **clean, FileRec **suspect, Sig *sigs) {
