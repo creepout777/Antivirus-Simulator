@@ -125,5 +125,6 @@ Nous coderons la boucle principale et les commandes :
 
 ---
 
-Pour ompiler le projet : gcc src/*.c -Iinclude -o antivirus
+Pour Compiler le projet : gcc src/*.c -Iinclude -o antivirus
+Vous pouvez aussi utiliser Make
 
