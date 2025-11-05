@@ -3,6 +3,12 @@
 #include "filelist.h"
 #include "siglist.h"
 
+/*
+purge_all:
+  - Appeler free_list pour Clean, Suspect, Quarantine
+  - Appeler free_sigs pour Signatures
+  - Mettre tous les pointeurs à NULL
+*/
 void purge_all(void) {
     if (Clean != NULL) {
         free_list(&Clean);
@@ -23,5 +29,4 @@ void purge_all(void) {
         free_sigs(&Signatures);
         Signatures = NULL;
     }
-
 }
